@@ -321,6 +321,12 @@ export default {
         }
         )
       }
+      this.upsertParam.controlNo = ''
+      this.upsertParam.category = ''
+      this.upsertParam.bookName = ''
+      this.upsertParam.status = ''
+      this.upsertParam.purchaseDate = ''
+      this.upsertParam.purchasePerson = ''
     },
     search () {
       console.log('searchクリック')
