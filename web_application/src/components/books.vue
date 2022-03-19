@@ -333,6 +333,13 @@ export default {
     },
     openDetail (rowData) {
       console.log('行クリック', rowData)
+      console.log(rowData.controlNo)
+      this.upsertParam.controlNo = rowData.controlNo
+      this.upsertParam.category = rowData.category
+      this.upsertParam.bookName = rowData.bookName
+      this.upsertParam.status = rowData.status
+      this.upsertParam.purchaseDate = rowData.purchaseDate
+      this.upsertParam.purchasePerson = rowData.purchasePerson
     }
   }
 }
