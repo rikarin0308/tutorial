@@ -162,8 +162,6 @@ export default {
       message: {
         value: 'Hello Vue.js!'
       },
-      index: 0,
-      flg: 0,
       list: ['りんご', 'ばなな', 'いちご'],
       // 別のデータを使用してlistから取り出す要素を動的に 4 で使用
       num: 1,
@@ -288,22 +286,29 @@ export default {
       console.log(this.upsertParam.purchaseDate)
       console.log(this.upsertParam.purchasePerson)
       console.log(this.books.controlNo)
-      for (var index = 0; index <= this.books.length - 1; index++) {
+      let index = 0
+      for (index = 0; index <= this.books.length - 1; index++) {
         console.log(this.books[index])
         console.log(this.books.length)
         console.log(index)
         console.log(this.books[index].controlNo)
         if (this.books[index].controlNo === this.upsertParam.controlNo) {
           console.log(index + 1 + '番目と一致した')
-          this.$set(this.books, index, {
+          this.books[index].controlNo = this.upsertParam.controlNo
+          this.books[index].category = this.upsertParam.category
+          this.books[index].bookName = this.upsertParam.bookName
+          this.books[index].status = this.upsertParam.status
+          this.books[index].purchaseDate = this.upsertParam.purchaseDate
+          this.books[index].purchasePerson = this.upsertParam.purchasePerson
+          /* vueの便利機能
+           this.$set(this.books, index, {
             controlNo: this.upsertParam.controlNo,
             category: this.upsertParam.category,
-            bookName: this.upsertParam.bookName,
+            bookName: this.upsertParam.bookame,
             status: this.upsertParam.status,
             purchaseDate: this.upsertParam.purchaseDate,
             purchasePerson: this.upsertParam.purchasePerson
-          }
-          )
+          } */
           break
         }
       }
@@ -321,12 +326,17 @@ export default {
         }
         )
       }
+      for (let key in this.upsertParam) {
+        this.upsertParam[key] = ''
+      }
+      /*
       this.upsertParam.controlNo = ''
       this.upsertParam.category = ''
       this.upsertParam.bookName = ''
       this.upsertParam.status = ''
       this.upsertParam.purchaseDate = ''
       this.upsertParam.purchasePerson = ''
+      */
     },
     search () {
       console.log('searchクリック')
