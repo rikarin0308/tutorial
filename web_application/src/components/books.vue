@@ -294,12 +294,17 @@ export default {
         console.log(this.books[index].controlNo)
         if (this.books[index].controlNo === this.upsertParam.controlNo) {
           console.log(index + 1 + '番目と一致した')
+          for (let key in this.books[index]) {
+            this.books[index][key] = this.upsertParam[key]
+          }
+          /*
           this.books[index].controlNo = this.upsertParam.controlNo
           this.books[index].category = this.upsertParam.category
           this.books[index].bookName = this.upsertParam.bookName
           this.books[index].status = this.upsertParam.status
           this.books[index].purchaseDate = this.upsertParam.purchaseDate
           this.books[index].purchasePerson = this.upsertParam.purchasePerson
+          */
           /* vueの便利機能
            this.$set(this.books, index, {
             controlNo: this.upsertParam.controlNo,
