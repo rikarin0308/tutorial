@@ -104,7 +104,7 @@
                     v-model="searchParam.category"
                     :items="categories"
                     item-text="name"
-                    item-value="code"
+                    item-value="name"
                     outlined
                     dense
                     clearable
@@ -345,6 +345,41 @@ export default {
     },
     search () {
       console.log('searchクリック')
+      console.log(this.searchParam.category)
+      console.log(this.searchParam.bookName)
+      let filBooks = []
+      if ((this.searchParam.category === '' ||
+          this.searchParam.category === undefined) &&
+         (this.searchParam.bookName === '' ||
+          this.searchParam.bookName === null)) {
+        filBooks = this.books
+        console.log(filBooks)
+      } else if (this.searchParam.category !== '' &&
+                  this.searchParam.category !== undefined &&
+                 (this.searchParam.bookName === '' ||
+                  this.searchParam.bookName === null)) {
+        filBooks = this.books.filter(item => item.category === this.searchParam.category)
+        console.log(filBooks)
+      } else if ((this.searchParam.category === '' ||
+                  this.searchParam.category === undefined) &&
+                  this.searchParam.bookName !== '' &&
+                  this.searchParam.bookName !== null) {
+        filBooks = this.books.filter(item => item.bookName === this.searchParam.bookName)
+        console.log(filBooks)
+      } else if (this.searchParam.category !== '' &&
+                this.searchParam.category !== undefined &&
+                this.searchParam.bookName !== '' &&
+                this.searchParam.bookName !== null) {
+        filBooks = this.books.filter(
+          item => item.category === this.searchParam.category &&
+          item.bookName === this.searchParam.bookName)
+        console.log(filBooks)
+      } else {
+        filBooks = ''
+        console.log(filBooks)
+      }
+      this.books = filBooks
+      console.log(this.books)
     },
     openDetail (rowData) {
       console.log('行クリック', rowData)
